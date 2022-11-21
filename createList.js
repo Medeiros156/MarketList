@@ -47,6 +47,6 @@ function createImage(data, keyWord) {
     }
     
 
-    ls.setItem(`imagesUrl-${keyWord}`, JSON.stringify(listaUrl))
+    localStorage.setItem(`imagesUrl-${keyWord}`, JSON.stringify(listaUrl))
      
 }

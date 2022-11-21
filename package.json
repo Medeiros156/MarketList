@@ -7,6 +7,6 @@
   "scripts": {
     "predeploy": "npm run build",
     "fix": "gh-pages -d dist",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build"
   }
 }
