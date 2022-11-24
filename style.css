@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
 }
 
@@ -9,11 +10,12 @@ html {
 body {
   height: inherit;
   overflow: hidden;
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-h1, p {
+h1,
+p {
   font-family: sans-serif;
   text-align: center;
   padding: 20px;
@@ -26,7 +28,7 @@ h1, p {
   bottom: 0px;
   right: 0;
   left: 0;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 ul {
@@ -34,18 +36,26 @@ ul {
 }
 
 .hints span {
-  text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
 }
 
 .container {
-  display: flex;
+  display: grid;
+  align-content: center;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+  grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px ;
 }
 
 .listBox div {
-  width: 100px;
-  height:100px;
+  /* width: 177.5px; */
+  height: 135px;
+}
+
+.listItemTitle {
+  margin-top: 60px;
+  align-self: center;
+  z-index: 999;
 }

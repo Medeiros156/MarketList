@@ -5,7 +5,8 @@ function addToList(speech) {
     var url = catchImage(speech[0])
 
     speech.forEach(e => {
-        listBox.innerHTML += `<div style=background-image:url(${url})> ${e} </div>`
+       /*  listBox.innerHTML += `<div style=background-image:url(${url})> ${e} </div>` */
+        listBox.innerHTML += `<div style=background-color:blue> <h1 class="listItemTitle">${e}`
     });
 
     listSpeech = [...listSpeech, ...speech]

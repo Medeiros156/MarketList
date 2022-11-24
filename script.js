@@ -22,11 +22,14 @@ var diagnostic = document.querySelector('.output');
 
 var hints = document.querySelector('.hints');
 var listBox = document.querySelector('.listBox');
+var bg = document.querySelector('html');
 
 
 document.body.onclick = function() {
   recognition.start();
   console.log('Ready to receive a command.');
+  bg.style.backgroundColor = "green";
+
   
 }
 
@@ -47,7 +50,7 @@ recognition.onresult = function(event) {
   console.log(data);
   console.log(speech);
 
-  
+  bg.style.backgroundColor = "red";
   addToList(speech)
   /* createList(speechList) */
   
