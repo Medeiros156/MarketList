@@ -44,18 +44,49 @@ ul {
   align-content: center;
   justify-content: center;
   align-items: center;
-  row-gap: 20px;
+  row-gap: 50px;
   column-gap: 20px;
-  grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px ;
+  grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px;
 }
 
 .listBox div {
   /* width: 177.5px; */
-  height: 135px;
+  /* height: 135px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+}
+.listBox div img {
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
+
 }
 
 .listItemTitle {
-  margin-top: 60px;
-  align-self: center;
+  /* margin-top: 120px; */
   z-index: 999;
+}
+
+@media (max-width: 600px) {
+  html {
+    height: auto;
+  }
+  .container {
+    grid-template-columns: 60px 60px 60px 60px;
+    font-size: 0.5rem;
+  }
+
+  .listBox div {
+    /* width: 177.5px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+  .listItemTitle {
+    margin-top: 60px;
+  }
 }

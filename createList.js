@@ -1,16 +1,29 @@
 import { insertDataFromList, deleteData } from "./Database.js";
 
+import {$,jQuery} from 'jquery';
+// export for others scripts to use
+window.$ = $;
+window.jQuery = jQuery;
+
+
 var listSpeech = [];
 var ls = localStorage;
 var box = document.querySelector(".listBox");
 
 export function addToList(speech) {
   console.log(speech[0]);
-  /* var url = catchImage(speech[0]) */
-
+  
   speech.forEach(function (e, i) {
     /*  listBox.innerHTML += `<div style=background-image:url(${url})> ${e} </div>` */
-    box.innerHTML += `<div onclick="deleteSelf(this)" class=item style=background-color:blue> <h1 id="listItem" class="listItemTitle">${e}`;
+    let str = e.charAt(0).toUpperCase() + e.slice(1)
+    var url = catchImage(str)
+    box.innerHTML += `
+    <div 
+      onclick="deleteSelf(this)" 
+      class=item 
+      style=background-color:#fafafa> 
+      <img src= '${url}' width='150px' height='150px'/>
+      <h3 id="listItem" class="listItemTitle">${str}`;
   });
 
   listSpeech = [...listSpeech, ...speech];

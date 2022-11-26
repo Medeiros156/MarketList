@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "gh-pages": "^4.0.0"
+    "axios": "^1.2.0",
+    "gh-pages": "^4.0.0",
+    "jquery": "^3.6.1"
   },
   "scripts": {
     "predeploy": "npm run build",

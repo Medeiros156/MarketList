@@ -49,6 +49,7 @@ recognition.onresult = function(event) {
   console.log('Confidence: ' + event.results[0][0].confidence);
   console.log(event);
   console.log(data);
+  console.log(typeof(speech));
   console.log(speech);
 
   bg.style.backgroundColor = "red";
