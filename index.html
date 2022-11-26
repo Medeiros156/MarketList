@@ -14,17 +14,33 @@
     <h1>Market List</h1>
 
     <p class="hints"></p>
-    <section class="container listBox">
-      
-
-
-    </section>
+    <section class="container listBox" id="List"></section>
+    <button id="button">DB</button>
+    <button id="button2">DB2</button>
     <div class="message">
       <p class="output"><em>...diagnostic messages</em></p>
     </div>
 
-    <script src="script.js"></script>
-    <script src="createList.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script type="module">
+      import { deleteSelf } from "./createList.js";
+      window.deleteSelf = deleteSelf
+      
+
+    </script>
+    <!-- <script>
+      function deleteSelf(el) {
+        console.log("e");
+        console.log(el);
+        var element = el;
+        element.remove();
+      }
+    </script> -->
+
+    <!-- <script type="module" src="script.js"></script> -->
+    <script type="module" src="main.js"></script>
+    <!-- <script src="createList.js"></script> -->
+
+    <!-- <script type="module" src="Database.js"></script> -->
   </body>
 </html>

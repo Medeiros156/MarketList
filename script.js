@@ -1,10 +1,11 @@
+import { addToList } from "./createList.js";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
 
 
-var recognition = new SpeechRecognition();
+export var recognition = new SpeechRecognition();
 if (SpeechGrammarList) {
   // SpeechGrammarList is not currently available in Safari, and does not have any effect in any other browser.
   // This code is provided as a demonstration of possible capability. You may choose not to use it.
@@ -67,3 +68,5 @@ recognition.onnomatch = function(event) {
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
+
+
