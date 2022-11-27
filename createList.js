@@ -1,6 +1,6 @@
 import { insertDataFromList, deleteData } from "./Database.js";
 
-import * as jquery3 from "./node_modules/jquery/dist/jquery.js";
+/* import * as jquery3 from "./node_modules/jquery/dist/jquery.js"; */
 import * as jquery3 from "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js";
 // export for others scripts to use
 /* window.$ = $;
