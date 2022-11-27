@@ -1,22 +1,28 @@
 import { insertDataFromList, deleteData } from "./Database.js";
 
-import {$,jQuery} from 'jquery';
+import * as jquery3 from "./node_modules/jquery/dist/jquery.js";
 // export for others scripts to use
-window.$ = $;
-window.jQuery = jQuery;
-
+/* window.$ = $;
+window.jQuery = jQuery; */
 
 var listSpeech = [];
 var ls = localStorage;
 var box = document.querySelector(".listBox");
 
 export function addToList(speech) {
-  console.log(speech[0]);
-  
   speech.forEach(function (e, i) {
-    /*  listBox.innerHTML += `<div style=background-image:url(${url})> ${e} </div>` */
-    let str = e.charAt(0).toUpperCase() + e.slice(1)
-    var url = catchImage(str)
+    let str = e.charAt(0).toUpperCase() + e.slice(1);
+    let random = Math.round(Math.random() * 10)
+    console.log(random);
+    var url = "";
+    if (!ls.getItem(`imagesUrl-${str}`)) {
+      catchImage(str);
+      url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
+    } else {
+      url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
+      console.log(typeof url);
+    }
+
     box.innerHTML += `
     <div 
       onclick="deleteSelf(this)" 
@@ -29,51 +35,50 @@ export function addToList(speech) {
   listSpeech = [...listSpeech, ...speech];
   ls.setItem("List", JSON.stringify(listSpeech));
   insertDataFromList();
-  
+
   console.log(listSpeech);
 }
 
-export function deleteSelf(el){
-    console.log("e");
-    console.log(el);
+export function deleteSelf(el) {
+  console.log("e");
+  console.log(el);
 
-    var listLs = ls.getItem("List")
-    var item = el.childNodes[1].innerHTML
-    var parseList = JSON.parse(listLs)
-    console.log(parseList);
-    parseList.forEach(function(e,i){
-      if (e==item) {
-        parseList.splice(i,1)
-        insertDataFromList()
-      }
+  var listLs = ls.getItem("List");
+  var item = el.childNodes[1].innerHTML;
+  var parseList = JSON.parse(listLs);
+  console.log(parseList);
+  parseList.forEach(function (e, i) {
+    if (e == item) {
+      parseList.splice(i, 1);
+      insertDataFromList();
+    }
+  });
 
-    })
-    
-    ls.setItem("List", JSON.stringify(parseList))
+  ls.setItem("List", JSON.stringify(parseList));
 
-    console.log(parseList);
+  console.log(parseList);
 
-    var element = el
-    element.remove()
+  var element = el;
+  element.remove();
+}
 
-} 
-
-function catchImage(keyWord) {
+async function catchImage(keyWord) {
+  console.log(keyWord);
   const settingsImage = {
     async: true,
     crossDomain: true,
-    url: `https://api.unsplash.com/search/photos?page=10&query=${keyWord}`,
+    url: `https://api.unsplash.com/search/photos?page=1&query=${keyWord+' eat'}`,
     method: "GET",
     headers: {
       Authorization: "Client-ID lt01JJdVhTVWIrFUryd22BhAf7x99UZtMfWpPFt_joU",
     },
   };
 
-  $.ajax(settingsImage).done(function (response) {
-    /* console.log(response); */
+  await $.ajax(settingsImage).done(function (response) {
+    console.log(response);
 
     const data = response.results;
-    /* console.log(data); */
+    console.log(data);
     createImage(data, keyWord);
 
     return data;
@@ -81,8 +86,8 @@ function catchImage(keyWord) {
 }
 
 function createImage(data, keyWord) {
-  const listaUrl = [];
-  /* console.log(data); */
+  let listaUrl = [];
+  console.log(data);
   for (let n = 0; n < data.length; n++) {
     let url = data[n].urls.raw;
     listaUrl.push(url);
