@@ -1,7 +1,7 @@
-import { insertDataFromList, deleteData } from "./Database.js";
+
 
 /* import * as jquery3 from "./node_modules/jquery/dist/jquery.js"; */
-import * as jquery3 from "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js";
+/* import * as jquery3 from "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"; */
 // export for others scripts to use
 /* window.$ = $;
 window.jQuery = jQuery; */
@@ -10,19 +10,16 @@ var listSpeech = [];
 var ls = localStorage;
 var box = document.querySelector(".listBox");
 
-export function addToList(speech) {
+function addToList(speech) {
   speech.forEach(function (e, i) {
     let str = e.charAt(0).toUpperCase() + e.slice(1);
-    let random = Math.round(Math.random() * 10)
+    let random = Math.round(Math.random() * 10 - 1);
     console.log(random);
-    var url = "";
+
     if (!ls.getItem(`imagesUrl-${str}`)) {
       catchImage(str);
-      url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
-    } else {
-      url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
-      console.log(typeof url);
     }
+    var url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
 
     box.innerHTML += `
     <div 
@@ -40,7 +37,7 @@ export function addToList(speech) {
   console.log(listSpeech);
 }
 
-export function deleteSelf(el) {
+function deleteSelf(el) {
   console.log("e");
   console.log(el);
 
@@ -68,7 +65,9 @@ async function catchImage(keyWord) {
   const settingsImage = {
     async: true,
     crossDomain: true,
-    url: `https://api.unsplash.com/search/photos?page=1&query=${keyWord+' eat'}`,
+    url: `https://api.unsplash.com/search/photos?page=1&query=${
+      keyWord + " eat"
+    }`,
     method: "GET",
     headers: {
       Authorization: "Client-ID lt01JJdVhTVWIrFUryd22BhAf7x99UZtMfWpPFt_joU",

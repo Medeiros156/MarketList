@@ -1,6 +1,4 @@
-import { insertDataFromList, deleteAllData } from "./Database.js";
-import { recognition } from "./script.js";
-import { addToList } from "./createList.js";
+
 
 
 
@@ -10,11 +8,11 @@ var mockData = ['banana','ovo','maça']
 button.addEventListener('click', ()=>{addToList(mockData)})
 
 /* button.addEventListener("click", insertDataFromList); */
-button2.addEventListener("click", deleteAllData);
+/* button2.addEventListener("click", sea()); */
 
 
 
-export function firstCapital(str) {
+function firstCapital(str) {
         
     const arr = str.split(" ");
     
