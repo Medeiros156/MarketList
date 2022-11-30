@@ -1,14 +1,13 @@
 
 
 
-
 var button = document.getElementById("button");
 var button2 = document.getElementById("button2");
 var mockData = ['banana','ovo','maça']
 button.addEventListener('click', ()=>{addToList(mockData)})
 
 /* button.addEventListener("click", insertDataFromList); */
-/* button2.addEventListener("click", sea()); */
+/* button2.addEventListener("click", fetchData()); */
 
 
 

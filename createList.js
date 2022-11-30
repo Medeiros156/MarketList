@@ -1,5 +1,3 @@
-
-
 /* import * as jquery3 from "./node_modules/jquery/dist/jquery.js"; */
 /* import * as jquery3 from "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"; */
 // export for others scripts to use
@@ -58,6 +56,52 @@ function deleteSelf(el) {
 
   var element = el;
   element.remove();
+}
+
+const apiKey = "rnd_M40Gorhe1RDeBKOz4xYwm2AwxHiDs";
+
+async function catchData() {
+  const settingsImage = {
+    async: true,
+    crossDomain: true,
+    url: `http://back-fqrl.onrender.com/`,
+    method: "GET",
+    headers: {
+/*       'Authorization': `Bearer {${apiKey}}`, */  
+          'Host': 'https://medeiros156.github.io/MarketList/'
+
+    },
+  };
+
+  await $.ajax(settingsImage).done(function (response) {
+    console.log(response);
+  });
+}
+function fetchData() {
+  fetch("http://back-fqrl.onrender.com/")
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}
+function fetchDataLocal() {
+  fetch("http://localhost:5000/market/list", { mode: 'no-cors'})
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}
+async function catchDataLocal() {
+  const settingsImage = {
+    async: true,
+    crossDomain: true,
+    url: `http://localhost:5000/market/list`,
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      /* 'Authorization': `Bearer {${apiKey}}` */
+    },
+  };
+
+  await $.ajax(settingsImage).done(function (response) {
+    console.log(response);
+  });
 }
 
 async function catchImage(keyWord) {
