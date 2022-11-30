@@ -21,7 +21,7 @@ function sea(){
         .catch(error => console.log(error));
 }
 
-sea()
+/* sea() */
 // search for certain size
 console.log(client.search('Mahatma Gandhi', {size: 'large'})
 );

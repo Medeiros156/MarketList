@@ -59,7 +59,7 @@ function deleteSelf(el) {
 }
 
 const apiKey = "rnd_M40Gorhe1RDeBKOz4xYwm2AwxHiDs";
-
+/*  */
 async function catchData() {
   const settingsImage = {
     async: true,
