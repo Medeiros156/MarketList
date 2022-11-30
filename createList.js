@@ -68,7 +68,7 @@ async function catchData() {
     method: "GET",
     headers: {
 /*       'Authorization': `Bearer {${apiKey}}`, */  
-          'Host': 'https://medeiros156.github.io/MarketList/'
+          
 
     },
   };
