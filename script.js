@@ -26,7 +26,7 @@ var listBox = document.querySelector('.listBox');
 var bg = document.querySelector('html');
 
 
-document.body.onclick = function() {
+button.onclick = function() {
   recognition.start();
   console.log('Ready to receive a command.');
   bg.style.backgroundColor = "green";
