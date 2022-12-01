@@ -61,19 +61,21 @@ function deleteSelf(el) {
 const apiKey = "rnd_M40Gorhe1RDeBKOz4xYwm2AwxHiDs";
 /*  */
 async function catchData() {
-  const settingsImage = {
+  const settingsData = {
     async: true,
     crossDomain: true,
-    url: `http://back-fqrl.onrender.com/`,
+    url: `https://back-fqrl.onrender.com/`,
     method: "GET",
     headers: {
 /*       'Authorization': `Bearer {${apiKey}}`, */  
+          /* 'Host': 'http://localhost:5502/' */
+
           
 
     },
   };
 
-  await $.ajax(settingsImage).done(function (response) {
+  await $.ajax(settingsData).done(function (response) {
     console.log(response);
   });
 }
