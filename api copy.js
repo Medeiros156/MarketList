@@ -54,31 +54,18 @@ async function catchDataLocal() {
   });
 }
 async function getDataImg(key) {
-  /* url: /* `https://back-fqrl.onrender.com/market/list?q=${key}`  `http://localhost:5000/img/imgsea?q=${key}`, */
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `http://localhost:5000/ai/openai?q=${key}`,
-    method: "POST",
-    headers: {
-      
-    },
-    
+    url: /* `https://back-fqrl.onrender.com/market/list?q=${key}` */ `http://localhost:5000/img/imgsea?q=${key}`,
+    method: "GET",
+    headers: {},
   };
 
-  let listUrl = await $.ajax(settingsData)
-    .catch((error) => {
-      console.log(error);
-    })
-    .done(function (response) {
-      console.log(response);
-      /* return response */
-      const urls = response.data
-      console.log(urls);
-      return urls;
-    });
+  let listUrl = await $.ajax(settingsData).done(function (response) {
+    return response;
+  });
 
-  console.log(listUrl);
-  ls.setItem(`ListUrl-${key}`, listUrl.data);
+  ls.setItem(`ListUrl-${key}`, listUrl);
   return listUrl;
 }

@@ -3,28 +3,29 @@ var ls = localStorage;
 var box = document.querySelector(".listBox");
 
 function addToList(speech) {
-  speech.forEach(function (e, i) {
+  speech.forEach(async function (e, i) {
     let str = e.charAt(0).toUpperCase() + e.slice(1);
-    let random = Math.round(Math.random() * 10);
+    let random = Math.round(Math.random() * 5);
     console.log(random);
-
-    if (!ls.getItem(`imagesUrl-${str}`)) {
-      catchImage(str);
+    
+    if (!ls.getItem(`ListUrl-${str}`)) {
+      await getDataImg(str);
     }
-    var url = JSON.parse(ls.getItem(`imagesUrl-${str}`))[random];
-
+    
+    var url = (ls.getItem(`ListUrl-${str}`)).split(',')
+    /* console.log(Array.of(listUrls))
+    let url = listUrls[random] */
     box.innerHTML += `
     <div 
       onclick="deleteSelf(this)" 
       class=item 
       style=background-color:#fafafa> 
-      <img src= '${url}' width='150px' height='150px'/>
+      <img src= '${url[0]}' width='150px' height='150px'/>
       <h3 id="listItem" class="listItemTitle">${str}`;
   });
 
   listSpeech = [...listSpeech, ...speech];
-  ls.setItem("List", JSON.stringify(listSpeech));
-  /* insertDataFromList(); */
+  ls.setItem("ListItems", JSON.stringify(listSpeech));
 
   console.log(listSpeech);
 }
@@ -32,28 +33,31 @@ function addToList(speech) {
 function deleteSelf(el) {
   console.log(el);
 
-  var listLs = ls.getItem("List");
-  var item = el.childNodes[1].innerHTML;
+  var listLs = ls.getItem("ListItems");
+  
+  var item = (el.childNodes[3].innerHTML).toLowerCase();
   var parseList = JSON.parse(listLs);
   console.log(parseList);
+  console.log(item);
+  console.log(parseList);
   parseList.forEach(function (e, i) {
+    console.log(e);
     if (e == item) {
+      console.log(item);
       parseList.splice(i, 1);
-      insertDataFromList();
     }
   });
-
-  ls.setItem("List", JSON.stringify(parseList));
+  ls.removeItem("ListItems")
+  ls.setItem("ListItems", JSON.stringify(parseList));
 
   console.log(parseList);
-
-  var element = el;
-  element.remove();
+  listSpeech = parseList
+  el.remove();
 }
 
-function createImage(data, keyWord) {
+function createImage(keyWord) {
+  ls.getItem()
   let listaUrl = [];
-  console.log(data);
   for (let n = 0; n < data.length; n++) {
     let url = data[n].urls.raw;
     listaUrl.push(url);

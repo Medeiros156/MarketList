@@ -45,15 +45,17 @@ recognition.onresult = function(event) {
   // We then return the transcript property of the SpeechRecognitionAlternative object
   var data = event.results[0][0].transcript;
   var speech = data.split(" ");
-  diagnostic.textContent = 'Result received: ' + speech + '.';
   console.log('Confidence: ' + event.results[0][0].confidence);
   console.log(event);
   console.log(data);
   console.log(typeof(speech));
   console.log(speech);
 
+  
+  
   bg.style.backgroundColor = "red";
-  addToList(speech)
+  addToList(prepositionsLogic(speech))
+  diagnostic.textContent = 'Result received: ' + speech + '.';
   /* createList(speechList) */
   
 }
@@ -69,5 +71,6 @@ recognition.onnomatch = function(event) {
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
+
 
 
