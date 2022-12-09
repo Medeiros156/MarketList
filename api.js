@@ -54,11 +54,11 @@ async function catchDataLocal() {
   });
 }
 async function getDataImg(key) {
-  /* url: /* `https://back-fqrl.onrender.com/market/list?q=${key}`  `http://localhost:5000/img/imgsea?q=${key}`, */
+  /* url: /* `https://back-fqrl.onrender.com/ai/openai?q=${key}`  `http://localhost:5000/img/imgsea?q=${key}`, */
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `http://localhost:5000/ai/openai?q=${key}`,
+    url: `https://back-fqrl.onrender.com/ai/openai?q=${key}`,
     method: "POST",
     headers: {
       
