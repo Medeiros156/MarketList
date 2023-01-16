@@ -14,27 +14,32 @@ async function getData() {
   });
 }
 function setData() {
-  let setting = {
-    /* async: true, */
-    /* crossDomain: true, */
-    url: `https://back-fqrl.onrender.com/market/list`,
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json" /*'Content-Lenght': '65' */,
-    },
-    data: JSON.stringify({
-      id: "12",
-      items: "TESTE12",
-    }),
-  };
+  let data = JSON.parse(localStorage.getItem("ListItems"));
+  console.log(data);
 
-  $.ajax(setting)
-    .done(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  let listJson = data.map((e, i) => ({ id: i, items: e }));
+  console.log(listJson);
+  listJson.forEach((element) => {
+    let setting = {
+      /* async: true, */
+      /* crossDomain: true, */
+      url: `https://back-fqrl.onrender.com/market/list`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json" ,
+      },
+      data: JSON.stringify(element),
+
+    };
+
+    $.ajax(setting)
+      .done(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
 }
 
 async function catchDataLocal() {
@@ -60,10 +65,7 @@ async function getDataImg(key) {
     crossDomain: true,
     url: `https://back-fqrl.onrender.com/ai/openai?q=${key}`,
     method: "POST",
-    headers: {
-      
-    },
-    
+    headers: {},
   };
 
   let listUrl = await $.ajax(settingsData)
@@ -73,7 +75,7 @@ async function getDataImg(key) {
     .done(function (response) {
       console.log(response);
       /* return response */
-      const urls = response.data
+      const urls = response.data;
       console.log(urls);
       return urls;
     });

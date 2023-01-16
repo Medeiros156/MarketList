@@ -21,6 +21,7 @@ var list = localStorage.getItem(List);
 
 
 
+
 import {
   getDatabase,
   ref,
@@ -33,7 +34,7 @@ import {
 
 const db = getDatabase();
 
-function insertData(e, i) {
+export function insertData(e, i) {
   set(ref(db, "Item - " + i), {
     text: e,
   })
@@ -46,7 +47,7 @@ function insertData(e, i) {
 }
 
 export function insertDataFromList() {
-  let ls = JSON.parse(localStorage.getItem("List"));
+  let ls = JSON.parse(localStorage.getItem("ListItems"));
   ls.forEach(function callback(e, i) {
     insertData(e, i);
   });

@@ -7,6 +7,7 @@ function addToList(speech) {
     let str = e.charAt(0).toUpperCase() + e.slice(1);
     let random = Math.round(Math.random() * 5);
     console.log(random);
+    /* insertData(e, i) */
     
     if (!ls.getItem(`ListUrl-${str}`)) {
       await getDataImg(str);

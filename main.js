@@ -1,3 +1,4 @@
+
 var mockData = ["banana", "ovos", "carne", "pao", "de", "lo"];
 var button = document.getElementById("button");
 var button2 = document.getElementById("button2");
@@ -6,7 +7,8 @@ button2.addEventListener("click", () => {
   addToList(prepositionsLogic(mockData)); /* getData() */
 });
 button3.addEventListener("click", () => {
-  prepositionsLogic(mockData);
+  console.log("click");
+  setData()
 });
 
 function firstCapital(str) {

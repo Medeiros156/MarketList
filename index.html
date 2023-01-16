@@ -14,7 +14,7 @@
   <body>
     <h1>Market List</h1>
     <div class="message">
-      <p class="output"><em>...diagnostic messages</em></p>
+      <p class="output"><em>...</em></p>
     </div>
 
     <section class="container listBox" id="List"></section>
@@ -24,24 +24,13 @@
       <button id="button3">InsertDb</button>
     </nav>
 
-    <script type="module">
-      /* import { deleteSelf } from "./createList.js";
-      window.deleteSelf = deleteSelf */
-    </script>
-    <!-- <script>
-      function deleteSelf(el) {
-        console.log("e");
-        console.log(el);
-        var element = el;
-        element.remove();
-      }
-    </script> -->
-
-    <script type="module" src="Database.js"></script>
+    
+    
+    <!-- <script type="module" src="Database.js"></script> -->
     <script src="api.js"></script>
     <script src="script.js"></script>
     <script src="createList.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
     <!-- <script type="module" src="searchImg.js"></script> -->
   </body>
 </html>
