@@ -54,6 +54,7 @@ recognition.onresult = function(event) {
   
   
   bg.style.backgroundColor = "red";
+  
   addToList(prepositionsLogic(speech))
   diagnostic.textContent = 'Result received: ' + speech + '.';
   /* createList(speechList) */

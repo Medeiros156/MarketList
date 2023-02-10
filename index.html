@@ -8,29 +8,25 @@
 
     <title>Market List</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css" />
   </head>
 
-  <body>
+  <body onload="update();">
     <h1>Market List</h1>
-    <div class="message">
-      <p class="output"><em>...</em></p>
-    </div>
+    
 
-    <section class="container listBox" id="List"></section>
     <nav class="navbar">
       <button id="button">LISTEN</button>
-      <button id="button2">MockData</button>
-      <button id="button3">InsertDb</button>
     </nav>
+    <section class="container listBox" id="List"></section>
 
     
     
     <!-- <script type="module" src="Database.js"></script> -->
     <script src="api.js"></script>
-    <script src="script.js"></script>
-    <script src="createList.js"></script>
-    <script type="module" src="main.js"></script>
+    <script src="scriptVoice.js"></script>
+    
+    <script src="main.js"></script>
     <!-- <script type="module" src="searchImg.js"></script> -->
   </body>
 </html>
