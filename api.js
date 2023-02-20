@@ -1,11 +1,12 @@
+const Auth = process.env.AUTH
 async function getData() {
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `https://back-fqrl.onrender.com/market/list`,
+    url: `https://marketlistapi.onrender.com/market/list`,
     // url: `http://localhost:5000/market/list`,
     method: "GET",
-    headers: {},
+    headers: {"authorization": Auth},
   };
   let data = [];
 
@@ -27,10 +28,10 @@ function removeItem(item) {
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `https://back-fqrl.onrender.com/market/del?q=${item}`,
+    url: `https://marketlistapi.onrender.com/market/del?q=${item}`,
     // url: `http://localhost:5000/market/del?q=${item}`,
     method: "DELETE",
-    headers: {},
+    headers: {"authorization": Auth},
   };
 
   $.ajax(settingsData).done(function (response) {
@@ -48,11 +49,12 @@ function setData(data) {
     let setting = {
       /* async: true, */
       /* crossDomain: true, */
-      url: `https://back-fqrl.onrender.com/market/list`,
+      url: `https://marketlistapi.onrender.com/market/list`,
       // url: `http://localhost:5000/market/list`,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "authorization": Auth
       },
       data: JSON.stringify(element),
     };
