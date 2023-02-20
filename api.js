@@ -1,4 +1,4 @@
-const Auth = process.env.AUTH
+const Auth = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJtYXJrZXQxcTJ3M2U0ciIsImlhdCI6MTY3NjkxOTk5N30.vPiJROZA9yxQqgLOA7YQ2MKkCvDlV5ZU4nqPtQIM-P8'
 async function getData() {
   let settingsData = {
     async: true,
