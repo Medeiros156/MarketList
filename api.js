@@ -1,15 +1,17 @@
-const Auth = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJtYXJrZXQxcTJ3M2U0ciIsImlhdCI6MTY3NjkxOTk5N30.vPiJROZA9yxQqgLOA7YQ2MKkCvDlV5ZU4nqPtQIM-P8'
+const Auth = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJtYXJrZXQxcTJ3M2U0ciIsImlhdCI6MTY3NjkxOTk5N30.vPiJROZA9yxQqgLOA7YQ2MKkCvDlV5ZU4nqPtQIM-P8";
+const apiUrl = "https://market-list-api.vercel.app/market";
+// const apiUrl = "http://localhost:5000/market";
+
+
 async function getData() {
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `https://marketlistapi.onrender.com/market/list`,
-    // url: `http://localhost:5000/market/list`,
+    url: `${apiUrl}/list`,
     method: "GET",
-    headers: {"authorization": Auth},
+    headers: { authorization: Auth },
   };
   let data = [];
-
   await $.ajax(settingsData).done(function (response) {
     console.log(response);
     response.forEach((element) => {
@@ -18,8 +20,8 @@ async function getData() {
     console.log(data);
     /* addToList(data); */
   });
-    
-    ls.setItem("ListItems", JSON.stringify(data));
+
+  ls.setItem("ListItems", JSON.stringify(data));
   return data;
 }
 
@@ -28,10 +30,9 @@ function removeItem(item) {
   let settingsData = {
     async: true,
     crossDomain: true,
-    url: `https://marketlistapi.onrender.com/market/del?q=${item}`,
-    // url: `http://localhost:5000/market/del?q=${item}`,
+    url: `${apiUrl}/del?q=${item}`,
     method: "DELETE",
-    headers: {"authorization": Auth},
+    headers: { authorization: Auth },
   };
 
   $.ajax(settingsData).done(function (response) {
@@ -49,12 +50,11 @@ function setData(data) {
     let setting = {
       /* async: true, */
       /* crossDomain: true, */
-      url: `https://marketlistapi.onrender.com/market/list`,
-      // url: `http://localhost:5000/market/list`,
+      url: `${apiUrl}/list`,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": Auth
+        authorization: Auth,
       },
       data: JSON.stringify(element),
     };
@@ -70,30 +70,29 @@ function setData(data) {
 }
 
 async function getDataImg(key) {
-  /* url: /* `https://back-fqrl.onrender.com/ai/openai?q=${key}`  `http://localhost:5000/img/imgsea?q=${key}`, */
+  let type = localStorage.getItem("type") || 1;
   try {
     let settingsData = {
       async: true,
       crossDomain: true,
-      url: `https://back-fqrl.onrender.com/ai/openai?q=${key}`,
-      // url: `http://localhost:5000/ai/openai?q=${key}`,
-      method: "POST",
-      headers: {},
+      url: `${apiUrl}/image?q=${key}&type=${type}`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: Auth,
+      },
     };
 
-    let url = await $.ajax(settingsData)
-      .catch((error) => {
-        console.log(error);
-      })
-      .done(function (response) {
-        console.log(response);
-        /* return response */
-        const urls = response.data;
-        console.log(urls);
-        return urls;
-      });
-    console.log('list',url.data);
-    return url.data;
+    let url = await $.ajax(settingsData).catch((error) => {
+      console.log(error);
+    });
+    
+    if (type == 1) {
+      let random = Math.floor(Math.random() * 10);
+      return url[random];
+    } else if (type == 2) {
+      return url;
+    }
   } catch (error) {
     console.log(error);
   }

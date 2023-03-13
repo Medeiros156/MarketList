@@ -1,4 +1,4 @@
-var mockData = ["banana", "ovos", "carne", "pao", "de", "lo"];
+var mockData = ["banana", "ovos", "carne", "pao"];
 var button = document.getElementById("button");
 
 var listSpeech = [];
@@ -8,36 +8,33 @@ var box = document.querySelector(".listBox");
 /* -------------------------------------------------------------- */
 
 async function update() {
-  console.log('update');
+  console.log("update");
   // ls.clear("ListItems")
   let getd = await getData();
-  refreshList(getd)
-  
+  refreshList(getd);
 }
 
 /* -------------------------------------------------------------- */
 
 function fakeData() {
-  addToList(prepositionsLogic(mockData))
+  addToList(prepositionsLogic(mockData));
 }
-
 
 /* -------------------------------------------------------------- */
 
-async function refreshList(dbData){
-
+async function refreshList(dbData) {
   dbData.forEach(async function (e, i) {
     let str = e.charAt(0).toUpperCase() + e.slice(1);
 
-    
-
-    // var url = await getDataImg(str);
-    let url = 'https://conteudo.imguol.com.br/c/entretenimento/52/2020/07/06/ovo-1594070430431_v2_1x1.jpg'
+    var url = await getDataImg(str);
+    if (url == undefined) {
+      url =
+        "https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png";
+    }
     box.innerHTML += `
     <div 
       onclick="deleteSelf(this)" 
-      class=item 
-      style=background-color:#fafafa> 
+      class=item> 
       <img src= '${url}' width='150px' height='150px'/>
       <h3 id="listItem" class="listItemTitle">${str}`;
   });
@@ -46,16 +43,17 @@ async function refreshList(dbData){
 async function addToList(speech) {
   speech.forEach(async function (e, i) {
     let str = e.charAt(0).toUpperCase() + e.slice(1);
+    let url = await getDataImg(str);
 
-   
-
-    var url = await getDataImg(str);
+    if (url == undefined) {
+      url =
+        "https://rafaturis.com.br/wp-content/uploads/2014/01/default-placeholder.png";
+    }
 
     box.innerHTML += `
     <div 
       onclick="deleteSelf(this)" 
-      class=item 
-      style=background-color:#fafafa> 
+      class=item> 
       <img src= '${url}' width='150px' height='150px'/>
       <h3 id="listItem" class="listItemTitle">${str}`;
   });
@@ -108,7 +106,7 @@ function prepositionsLogic(listOfData) {
   console.log(listOfData);
   console.log("prepositionsLogic");
   listOfData.map((e, i) => {
-    if (e == "de" || e == "da"|| e == "sem") {
+    if (e == "de" || e == "da" || e == "sem") {
       let newItemOfList =
         listOfData[i - 1] + " " + listOfData[i] + " " + listOfData[i + 1];
       console.log(newItemOfList);
@@ -119,13 +117,20 @@ function prepositionsLogic(listOfData) {
   console.log(listOfData);
   return listOfData;
 }
-/* function createImage(keyWord) {
-  ls.getItem();
-  let listaUrl = [];
-  for (let n = 0; n < data.length; n++) {
-    let url = data[n].urls.raw;
-    listaUrl.push(url);
-  }
 
-  ls.setItem(`imagesUrl-${keyWord}`, JSON.stringify(listaUrl));
-} */
+const checkbox = document.querySelector(".switch-button-checkbox");
+if (localStorage.getItem("type") === "2") {
+  checkbox.checked = true;
+}
+
+checkbox.addEventListener("change", function () {
+  if (this.checked) {
+    type = 2;
+    localStorage.setItem("type", type);
+    console.log(type);
+  } else {
+    type = 1;
+    localStorage.setItem("type", type);
+    console.log(type);
+  }
+});
